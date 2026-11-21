@@ -1,51 +1,87 @@
- **AWS-3-Tier-Architecture-Project**
-Building Scalable, Secure and High-Performance Web Applications with AWS 3-Tier Architecture
- AWS 3-Tier Architecture Project
+ # AWS 3-Tier Architecture Project
 
- **Project Title**
-Building Scalable, Secure and High-Performance Web Applications with AWS 3-Tier Architecture.
+## Project Title
+**Building Scalable, Secure and High-Performance Web Applications with AWS 3-Tier Architecture**
 
- **Project Overview**
-This project demonstrates the deployment of a secure and scalable three-tier web application using Amazon Web Services (AWS).
+## Project Overview
+This project demonstrates the design, deployment, configuration and validation of a three-tier web application using Amazon Web Services (AWS).
 
-Architecture Components
+The application allows users to submit feedback through a web interface. The backend processes the requests and stores feedback records in an Amazon RDS MySQL database.
 
-### 1. Networking Tier
+## AWS Architecture
+
+The project uses the following three tiers:
+
+### 1. Web Tier
+ Amazon EC2 instances running Ubuntu
+ Nginx web server
+ Internet-facing Application Load Balancer
+ Public subnets across two Availability Zones
+
+### 2. Application Tier
+ Python Flask backend API
+ Private EC2 instances
+ Internal Application Load Balancer
+ Nginx reverse proxy integration
+
+### 3. Database Tier
+ Amazon RDS MySQL
+ Private database subnets
+ Database security group restricting access to the application tier
+
+## AWS Services and Technologies
  Amazon VPC
  Public and Private Subnets
  Internet Gateway
  NAT Gateway
- Route Tables
-
-### 2. Web Tier
- Amazon EC2 (Ubuntu)
- Nginx Web Server
- Internet-facing Application Load Balancer
-
-### 3. Application Tier
- Python Flask Backend API
- Private EC2 Instances
- Internal Application Load Balancer
-
-### 4. Database Tier
+ Amazon EC2
+ Application Load Balancer
  Amazon RDS MySQL
- Private Database Subnets
- Database Security Group
+ Security Groups
+ Ubuntu Linux
+ Nginx
+ Python
+ Flask
+ MySQL
+ GitHub
 
 ## Application Workflow
-1. User accesses the application through the public Application Load Balancer.
-2. Nginx web servers receive and forward API requests.
-3. The internal Application Load Balancer distributes requests to Flask application servers.
-4. Flask connects to Amazon RDS MySQL.
-5. Feedback records are stored in the database.
+1. Users access the feedback application through the public Application Load Balancer.
+2. Nginx web servers serve the frontend.
+3. API requests are forwarded through the internal Application Load Balancer.
+4. Flask application servers process the feedback requests.
+5. Feedback records are stored in Amazon RDS MySQL.
 
-## Security
- Security groups restrict communication between tiers.
- Application and database servers are deployed in private subnets.
- Database access is restricted to the application tier.
+## Security Implementation
+ Web, application and database tiers were separated using subnets.
+ Application and database instances were deployed in private subnets.
+ Security groups restricted communication between the tiers.
+ Database access was allowed only from the application tier.
+ Database credentials were kept out of the public source code.
 
-## Technologies Used
-AWS, EC2, VPC, RDS, Application Load Balancer, Nginx, Ubuntu, Python, Flask, MySQL, GitHub.
+## Project Validation
+The deployed application was tested successfully.
+
+ Frontend feedback form loaded through the public ALB.
+ Backend Flask API responded successfully.
+ Feedback submission was tested.
+ Records were verified in the Amazon RDS MySQL database.
+ Security group rules were reviewed and tightened.
+
+## Project Resource Cleanup
+After successful testing and validation, the AWS resources created for this project were terminated to avoid ongoing AWS charges.
+
+Therefore, the application is not currently hosted or publicly accessible.
+
+## Project Files
+ app.py` – Flask backend application
+ index.html` – Feedback form frontend
+ nginx.conf` – Nginx reverse proxy configuration
+ requirements.txt` – Python dependencies
+ .env.example` – Sample environment configuration
 
 ## Project Documentation
-A PDF containing project implementation screenshots and the architecture diagram is available through the Document URL submitted with this project.
+The project implementation screenshots, task-wise evidence and AWS architecture diagram are provided in the accompanying project documentation PDF.
+
+## Author
+**Amrutha R**
